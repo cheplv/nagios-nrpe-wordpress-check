@@ -35,6 +35,12 @@ if (!empty($argv[2])) {
     }
 }
 
+// Override default WP redirect function
+function wp_redirect($location, $status = 301) {
+    echo "Redirection detected: $location\n";
+    echo "Use command: " . implode(' ', [$argv[0], $argv[1], $location]) . "\n";
+    exit(1);
+}
 
 require_once($wpPath . '/wp-load.php');
 
